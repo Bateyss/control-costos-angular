@@ -1,0 +1,56 @@
+<mat-accordion multi>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Formulario
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card>
+            <mat-card-title>
+                <label *ngIf="!productoSeleccionado || productoSeleccionado.idProducto == 0" class="h4">Agregar
+                    Producto</label>
+                <label *ngIf="productoSeleccionado && productoSeleccionado.idProducto > 0" class="h4">Editar
+                    Producto</label>
+            </mat-card-title>
+            <mat-card-content>
+                <form id="productoForm" [formGroup]="productoForm" (ngSubmit)="guardarProducto()">
+                    <mat-grid-list cols="1">
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Nombre</mat-label>
+                                <input matInput required formControlName="nombreProducto"
+                                    [ngClass]="{ 'is-invalid': productoF('nombreProducto')?.errors }" />
+                                <mat-error *ngIf="productoF('nombreProducto')?.errors">Ingrese Nombre</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="!productoSeleccionado || productoSeleccionado.idProducto == 0">Agregar</button>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="productoSeleccionado && productoSeleccionado.idProducto > 0">Editar</button>
+                        </mat-card-title>
+                    </mat-grid-list>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Tabla Producto
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="productoList" class="mat-elevation-z8">
+            <ng-container matColumnDef="nombreProducto">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Nombre</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.nombreProducto}} </td>
+            </ng-container>
+
+            <tr mat-header-row
+                *matHeaderRowDef="['nombreProducto']"></tr>
+            <tr mat-row
+                *matRowDef="let row; columns: ['nombreProducto'];"
+                (click)="seleccionarProducto(row)"></tr>
+        </table>
+    </mat-expansion-panel>
+</mat-accordion>

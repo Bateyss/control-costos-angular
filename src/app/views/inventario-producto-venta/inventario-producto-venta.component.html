@@ -1,0 +1,83 @@
+<mat-accordion multi>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Formulario
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card>
+            <mat-card-title>
+                <label *ngIf="!inventarioPPVSeleccionado || inventarioPPVSeleccionado.idInventarioPPV == 0"
+                    class="h4">Agregar Inventario</label>
+                <label *ngIf="inventarioPPVSeleccionado && inventarioPPVSeleccionado.idInventarioPPV > 0" class="h4">Editar
+                    Inventario</label>
+            </mat-card-title>
+            <mat-card-content>
+                <form id="inventarioPPVForm" [formGroup]="inventarioPPVForm" (ngSubmit)="guardarInventarioPPV()">
+                    <mat-grid-list cols="1">
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Producto</mat-label>
+                                <mat-select [compareWith]="compareIds" required formControlName="producto"
+                                    [ngClass]="{ 'is-invalid': inventarioPPVF('producto')?.errors }">
+                                    <mat-option *ngFor="let area of productoList; let i = index"
+                                        [value]="area">{{area.nombreProducto}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="inventarioPPVF('producto')?.errors">Seleccionar Materia
+                                    Prima</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>codigo lote</mat-label>
+                                <input matInput required formControlName="lote"
+                                    [ngClass]="{ 'is-invalid': inventarioPPVF('lote')?.errors }" />
+                                <mat-error *ngIf="inventarioPPVF('lote')?.errors">Ingrese lote</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Cantidad</mat-label>
+                                <input matInput required formControlName="cantidad"
+                                    [ngClass]="{ 'is-invalid': inventarioPPVF('cantidad')?.errors }" />
+                                <mat-error *ngIf="inventarioPPVF('cantidad')?.errors">Ingrese Cantidad</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="!inventarioPPVSeleccionado || inventarioPPVSeleccionado.idInventarioPPV == 0">Agregar</button>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="inventarioPPVSeleccionado && inventarioPPVSeleccionado.idInventarioPPV > 0">Editar</button>
+                        </mat-card-title>
+                    </mat-grid-list>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Tabla Inventario
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="inventarioPPVList" class="mat-elevation-z8">
+            <ng-container matColumnDef="producto">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Producto</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.producto.nombreProducto}} </td>
+            </ng-container>
+            <ng-container matColumnDef="lote">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Codigo Lote</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.lote}} </td>
+            </ng-container>
+            <ng-container matColumnDef="cantidad">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Cantidad</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.cantidad}}
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['producto','lote', 'cantidad']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['producto','lote','cantidad'];"
+                (click)="seleccionarInventarioPPV(row)"></tr>
+        </table>
+    </mat-expansion-panel>
+</mat-accordion>

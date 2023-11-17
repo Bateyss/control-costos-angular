@@ -1,0 +1,95 @@
+<mat-accordion multi>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Formulario
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card>
+            <mat-card-title>
+                <label *ngIf="!materiaPrimaSeleccionado || materiaPrimaSeleccionado.idMateria == 0"
+                    class="h4">Agregar Inventario</label>
+                <label *ngIf="materiaPrimaSeleccionado && materiaPrimaSeleccionado.idMateria > 0" class="h4">Editar
+                    Inventario</label>
+            </mat-card-title>
+            <mat-card-content>
+                <form id="materiaPrimaForm" [formGroup]="materiaPrimaForm" (ngSubmit)="guardarMateriaPrima()">
+                    <mat-grid-list cols="1">
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Nombre Materia</mat-label>
+                                <input matInput required formControlName="nombreMateria"
+                                    [ngClass]="{ 'is-invalid': materiaPrimaF('nombreMateria')?.errors }" />
+                                <mat-error *ngIf="materiaPrimaF('nombreMateria')?.errors">Ingrese Nombre</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Tipo Materia Prima</mat-label>
+                                <mat-select required formControlName="tipoMateria"
+                                    [ngClass]="{ 'is-invalid': materiaPrimaF('tipoMateria')?.errors }">
+                                    <mat-option [value]="'DIRECTA'">Directa</mat-option>
+                                    <mat-option [value]="'INDIRECTA'">Indirecta</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="materiaPrimaF('tipoMateria')?.errors">Selecciona una opcion</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Costo Unitario</mat-label>
+                                <input matInput required formControlName="costoUnitarioMateria"
+                                    [ngClass]="{ 'is-invalid': materiaPrimaF('costoUnitarioMateria')?.errors }" />
+                                <mat-error *ngIf="materiaPrimaF('costoUnitarioMateria')?.errors">Ingrese Costo Unitario</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Flete Materia</mat-label>
+                                <input matInput required formControlName="fleteMateria"
+                                    [ngClass]="{ 'is-invalid': materiaPrimaF('fleteMateria')?.errors }" />
+                                <mat-error *ngIf="materiaPrimaF('fleteMateria')?.errors">Ingrese Flete</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="!materiaPrimaSeleccionado || materiaPrimaSeleccionado.idMateria == 0">Agregar</button>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="materiaPrimaSeleccionado && materiaPrimaSeleccionado.idMateria > 0">Editar</button>
+                        </mat-card-title>
+                    </mat-grid-list>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Tabla Inventario
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="materiaPrimaList" class="mat-elevation-z8">
+            <ng-container matColumnDef="nombreMateria">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Nombre</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.nombreMateria}} </td>
+            </ng-container>
+            <ng-container matColumnDef="tipoMateria">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Tipo Material</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.tipoMateria}} </td>
+            </ng-container>
+            <ng-container matColumnDef="costoUnitarioMateria">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Costo Unitario</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.costoUnitarioMateria | currency}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="fleteMateria">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Flete</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.fleteMateria | currency}}
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['nombreMateria','tipoMateria', 'costoUnitarioMateria', 'fleteMateria']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['nombreMateria','tipoMateria', 'costoUnitarioMateria', 'fleteMateria'];"
+                (click)="seleccionarMateriaPrima(row)"></tr>
+        </table>
+    </mat-expansion-panel>
+</mat-accordion>

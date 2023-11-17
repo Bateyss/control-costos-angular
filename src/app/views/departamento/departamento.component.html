@@ -1,0 +1,56 @@
+<mat-accordion multi>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Formulario
+              </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card>
+            <mat-card-title>
+                <label *ngIf="!departamentoSeleccionado || departamentoSeleccionado.idDepartamento == 0"
+                    class="h4">Agregar Departamento</label>
+                <label *ngIf="departamentoSeleccionado && departamentoSeleccionado.idDepartamento > 0"
+                    class="h4">Editar Departamento</label>
+            </mat-card-title>
+            <mat-card-content>
+                <form id="frmDepartamento" [formGroup]="departamentoForm" (ngSubmit)="guardarDepartamento()">
+                    <mat-grid-list cols="1">
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Nombre Departamento</mat-label>
+                                <input matInput required formControlName="nombreDepartamento"
+                                    [ngClass]="{ 'is-invalid': departamentoF('nombreDepartamento')?.errors }" />
+                                <mat-error *ngIf="departamentoF('nombreDepartamento')?.errors">Ingrese nombre de
+                                    departamento</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <button mat-stroked-button color="primary" type="submit" *ngIf="!departamentoSeleccionado || departamentoSeleccionado.idDepartamento == 0">Agregar</button>
+                            <button mat-stroked-button color="primary" type="submit" *ngIf="departamentoSeleccionado && departamentoSeleccionado.idDepartamento > 0">Editar</button>
+                        </mat-card-title>
+                    </mat-grid-list>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Tabla Departamentos
+              </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="departamentoList" class="mat-elevation-z8" >
+            <ng-container matColumnDef="idDepartamento">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Codigo Departamento</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.idDepartamento}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nombreDepartamento" >
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Nombre Departamento</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.nombreDepartamento}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['idDepartamento', 'nombreDepartamento']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['idDepartamento', 'nombreDepartamento'];" (click)="seleccionarDepartamento(row)"></tr>
+        </table>
+    </mat-expansion-panel>
+</mat-accordion>

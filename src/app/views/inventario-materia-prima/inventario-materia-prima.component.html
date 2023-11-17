@@ -1,0 +1,107 @@
+<mat-accordion multi>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Formulario
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card>
+            <mat-card-title>
+                <label *ngIf="!inventarioMPSeleccionado || inventarioMPSeleccionado.idInventarioMP == 0"
+                    class="h4">Agregar Inventario</label>
+                <label *ngIf="inventarioMPSeleccionado && inventarioMPSeleccionado.idInventarioMP > 0" class="h4">Editar
+                    Inventario</label>
+            </mat-card-title>
+            <mat-card-content>
+                <form id="frmInventarioMP" [formGroup]="inventarioMPForm" (ngSubmit)="guardarInventarioMP()">
+                    <mat-grid-list cols="1">
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Materia Prima</mat-label>
+                                <mat-select [compareWith]="compareIds" required formControlName="materiaPrima"
+                                    [ngClass]="{ 'is-invalid': inventarioMPF('materiaPrima')?.errors }">
+                                    <mat-option *ngFor="let area of materiaPrimaList; let i = index"
+                                        [value]="area">{{area.nombreMateria}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="inventarioMPF('materiaPrima')?.errors">Seleccionar Materia
+                                    Prima</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>codigo lote</mat-label>
+                                <input matInput required formControlName="lote"
+                                    [ngClass]="{ 'is-invalid': inventarioMPF('lote')?.errors }" />
+                                <mat-error *ngIf="inventarioMPF('lote')?.errors">Ingrese lote</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Es Importado</mat-label>
+                                <mat-select required formControlName="esImportado"
+                                    [ngClass]="{ 'is-invalid': inventarioMPF('esImportado')?.errors }">
+                                    <mat-option [value]="true">SI</mat-option>
+                                    <mat-option [value]="false">NO</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="inventarioMPF('esImportado')?.errors">Selecciona una opcion</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>flete</mat-label>
+                                <input matInput required formControlName="flete"
+                                    [ngClass]="{ 'is-invalid': inventarioMPF('flete')?.errors }" />
+                                <mat-error *ngIf="inventarioMPF('flete')?.errors">Ingrese Flete</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Cantidad</mat-label>
+                                <input matInput required formControlName="cantidad"
+                                    [ngClass]="{ 'is-invalid': inventarioMPF('cantidad')?.errors }" />
+                                <mat-error *ngIf="inventarioMPF('cantidad')?.errors">Ingrese Cantidad</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="!inventarioMPSeleccionado || inventarioMPSeleccionado.idInventarioMP == 0">Agregar</button>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="inventarioMPSeleccionado && inventarioMPSeleccionado.idInventarioMP > 0">Editar</button>
+                        </mat-card-title>
+                    </mat-grid-list>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Tabla Inventario
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="inventarioMPList" class="mat-elevation-z8">
+            <ng-container matColumnDef="lote">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Codigo Lote</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.lote}} </td>
+            </ng-container>
+            <ng-container matColumnDef="esImportado">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Es Importado</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.esImportado ? 'SI' : 'NO'}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="flete">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Flete</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.flete | currency}} </td>
+            </ng-container>
+            <ng-container matColumnDef="cantidad">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Cantidad</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.cantidad}}
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['lote', 'esImportado','flete','cantidad']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['lote', 'esImportado','flete','cantidad'];"
+                (click)="seleccionarInventarioMP(row)"></tr>
+        </table>
+    </mat-expansion-panel>
+</mat-accordion>

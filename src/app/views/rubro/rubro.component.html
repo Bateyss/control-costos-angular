@@ -1,0 +1,56 @@
+<mat-accordion multi>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Formulario
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card>
+            <mat-card-title>
+                <label *ngIf="!rubroSeleccionado || rubroSeleccionado.idRubro == 0" class="h4">Agregar
+                    Rubro</label>
+                <label *ngIf="rubroSeleccionado && rubroSeleccionado.idRubro > 0" class="h4">Editar
+                    Rubro</label>
+            </mat-card-title>
+            <mat-card-content>
+                <form id="rubroForm" [formGroup]="rubroForm" (ngSubmit)="guardarRubro()">
+                    <mat-grid-list cols="1">
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Nombre</mat-label>
+                                <input matInput required formControlName="nombreRubro"
+                                    [ngClass]="{ 'is-invalid': rubroF('nombreRubro')?.errors }" />
+                                <mat-error *ngIf="rubroF('nombreRubro')?.errors">Ingrese Nombre</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="!rubroSeleccionado || rubroSeleccionado.idRubro == 0">Agregar</button>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="rubroSeleccionado && rubroSeleccionado.idRubro > 0">Editar</button>
+                        </mat-card-title>
+                    </mat-grid-list>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Tabla Rubro
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="rubroList" class="mat-elevation-z8">
+            <ng-container matColumnDef="idRubro">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Nombre</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.nombreRubro}} </td>
+            </ng-container>
+
+            <tr mat-header-row
+                *matHeaderRowDef="['idRubro']"></tr>
+            <tr mat-row
+                *matRowDef="let row; columns: ['idRubro'];"
+                (click)="seleccionarRubro(row)"></tr>
+        </table>
+    </mat-expansion-panel>
+</mat-accordion>

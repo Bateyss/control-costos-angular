@@ -1,0 +1,84 @@
+<mat-accordion multi>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Formulario
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card>
+            <mat-card-title>
+                <label *ngIf="!puestoSeleccionado || puestoSeleccionado.idPuesto == 0"
+                    class="h4">Agregar Puesto</label>
+                <label *ngIf="puestoSeleccionado && puestoSeleccionado.idPuesto > 0" class="h4">Editar
+                    Puesto</label>
+            </mat-card-title>
+            <mat-card-content>
+                <form id="puestoForm" [formGroup]="puestoForm" (ngSubmit)="guardarPuesto()">
+                    <mat-grid-list cols="1">
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Departamento</mat-label>
+                                <mat-select [compareWith]="compareIds" required formControlName="departamento"
+                                    [ngClass]="{ 'is-invalid': puestoF('departamento')?.errors }">
+                                    <mat-option *ngFor="let area of departamentoList; let i = index"
+                                        [value]="area">{{area.nombreDepartamento}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="puestoF('departamento')?.errors">Seleccionar Departamento</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Rubro</mat-label>
+                                <mat-select [compareWith]="compareIds" required formControlName="rubro"
+                                    [ngClass]="{ 'is-invalid': puestoF('rubro')?.errors }">
+                                    <mat-option *ngFor="let area of rubroList; let i = index"
+                                        [value]="area">{{area.nombreRubro}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="puestoF('rubro')?.errors">Seleccionar Rubro</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <mat-form-field>
+                                <mat-label>Nombre de Puesto</mat-label>
+                                <input matInput required formControlName="nombrePuesto"
+                                    [ngClass]="{ 'is-invalid': puestoF('nombrePuesto')?.errors }" />
+                                <mat-error *ngIf="puestoF('nombrePuesto')?.errors">Ingrese Nombre de Puesto</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="!puestoSeleccionado || puestoSeleccionado.idPuesto == 0">Agregar</button>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="puestoSeleccionado && puestoSeleccionado.idPuesto > 0">Editar</button>
+                        </mat-card-title>
+                    </mat-grid-list>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Tabla Puesto
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="puestoList" class="mat-elevation-z8">
+            <ng-container matColumnDef="departamento">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Nombre Departamento</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.departamento.nombreDepartamento}} </td>
+            </ng-container>
+            <ng-container matColumnDef="rubro">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Nombre Rubro</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.rubro.nombreRubro}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nombrePuesto">
+                <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Nombre Puesto</th>
+                <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.nombrePuesto}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['departamento', 'rubro','nombrePuesto']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['departamento', 'rubro','nombrePuesto'];"
+                (click)="seleccionarPuesto(row)"></tr>
+        </table>
+    </mat-expansion-panel>
+</mat-accordion>
