@@ -22,17 +22,24 @@
                                     [ngClass]="{ 'is-invalid': gastoAdministrativoF('descripcion')?.errors }" />
                                 <mat-error *ngIf="gastoAdministrativoF('descripcion')?.errors">Ingrese Descripcion</mat-error>
                             </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
                             <mat-form-field>
                                 <mat-label>Inversion Mensual</mat-label>
                                 <input matInput required formControlName="inversionMensual"
                                     [ngClass]="{ 'is-invalid': gastoAdministrativoF('inversionMensual')?.errors }" />
                                 <mat-error *ngIf="gastoAdministrativoF('inversionMensual')?.errors">Ingrese Inversion Mensual</mat-error>
                             </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
                             <mat-form-field>
-                                <mat-label>Activo</mat-label>
-                                <input matInput type="checkbox" required formControlName="activo"
-                                    [ngClass]="{ 'is-invalid': gastoAdministrativoF('activo')?.errors }" />
-                                <mat-error *ngIf="gastoAdministrativoF('activo')?.errors">es activo?</mat-error>
+                                <mat-label>Es Importado</mat-label>
+                                <mat-select required formControlName="activo"
+                                    [ngClass]="{ 'is-invalid': gastoAdministrativoF('activo')?.errors }">
+                                    <mat-option [value]="true">SI</mat-option>
+                                    <mat-option [value]="false">NO</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="gastoAdministrativoF('activo')?.errors">Selecciona una opcion</mat-error>
                             </mat-form-field>
                         </mat-card-title>
                         <mat-card-title>

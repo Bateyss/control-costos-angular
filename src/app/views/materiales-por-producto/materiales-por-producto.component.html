@@ -19,16 +19,9 @@
                     (ngSubmit)="guardarMaterialesPorProducto()">
                     <mat-grid-list cols="1">
                         <mat-card-title>
-                            <mat-form-field>
-                                <mat-label>Descripcion</mat-label>
-                                <input matInput required formControlName="producto"
-                                    [ngClass]="{ 'is-invalid': materialesPorProductoF('producto')?.errors }" />
-                                <mat-error *ngIf="materialesPorProductoF('producto')?.errors">Ingrese
-                                    Descripcion</mat-error>
-                            </mat-form-field>
                             <mat-card-title>
                                 <mat-form-field>
-                                    <mat-label>Materia Prima</mat-label>
+                                    <mat-label>Productos</mat-label>
                                     <mat-select [compareWith]="compareIds" required formControlName="producto"
                                         [ngClass]="{ 'is-invalid': materialesPorProductoF('producto')?.errors }">
                                         <mat-option *ngFor="let area of productoList; let i = index"
@@ -53,7 +46,7 @@
                             </mat-card-title>
                             <mat-form-field>
                                 <mat-label>Cantidad Necesaria</mat-label>
-                                <input matInput type="checkbox" required formControlName="cantidadNecesaria"
+                                <input matInput required formControlName="cantidadNecesaria"
                                     [ngClass]="{ 'is-invalid': materialesPorProductoF('cantidadNecesaria')?.errors }" />
                                 <mat-error *ngIf="materialesPorProductoF('cantidadNecesaria')?.errors">es
                                     activo?</mat-error>

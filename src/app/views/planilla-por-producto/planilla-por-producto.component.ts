@@ -78,6 +78,8 @@ export class PlanillaPorProductoComponent {
       horasExtraNocturnas: [0, [Validators.required, Validators.min(0)]]
     });
     this.cargarPlanillaPorProducto()
+    this.cargarProductos()
+    this.cargarPlanillas();
   }
 
   planillaPorProductoF(control: string) { return this.planillaPorProductoForm.get(control); }
@@ -88,7 +90,7 @@ export class PlanillaPorProductoComponent {
   cargarProductos() {
     this.productoService.getList(lista => this.productoList = lista);
   }
-  cargarMateriasPrimas() {
+  cargarPlanillas() {
     this.planillaService.getList(lista => this.planillaList = lista);
   }
 

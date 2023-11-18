@@ -94,6 +94,7 @@ export class EntityParser {
     }
     public static parseSueldosGastosMensuales(data: any): SueldoGastosMensuales {
         var modelo: SueldoGastosMensuales = {
+            idSueldoGastoMensual: data.idSueldoGastoMensual,
             descripcion: data.descripcion,
             inversionMensual: data.inversionMensual,
             activo: data.activo
@@ -102,6 +103,7 @@ export class EntityParser {
     }
     public static parsePlanillaPorProducto(data: any): PlanillaPorProducto {
         var modelo: PlanillaPorProducto = {
+            idPlanillaProducto: data.idSueldoGastoMensual,
             producto: this.parseProducto(data.producto),
             planilla: this.parsePlanilla(data.planilla),
             cantidadRecursos: data.cantidadRecursos,
@@ -114,14 +116,16 @@ export class EntityParser {
     }
     public static parseMaterialesPorProducto(data: any): MaterialesPorProducto {
         var modelo: MaterialesPorProducto = {
+            idMaterialProducto: data.idMaterialProducto,
             producto: this.parseProducto(data.producto),
             materiaPrima: this.parseMateriaPrima(data.materiaPrima),
-            cantidadNecesaria: data.cantidadRecursos
+            cantidadNecesaria: data.cantidadNecesaria
         }
         return modelo;
     }
     public static parseGastosAdministrativos(data: any): GastosAdministrativos {
         var modelo: GastosAdministrativos = {
+            idGastoAdministrativo: data.idGastoAdministrativo,
             descripcion: data.descripcion,
             inversionMensual: data.inversionMensual,
             activo: data.activo

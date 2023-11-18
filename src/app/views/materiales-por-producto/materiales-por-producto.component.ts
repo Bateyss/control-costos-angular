@@ -58,6 +58,8 @@ export class MaterialesPorProductoComponent {
       cantidadNecesaria: ['', [Validators.required, Validators.min(0.00)]]
     });
     this.cargarMaterialesPorProducto()
+    this.cargarProductos();
+    this.cargarMateriasPrimas();
   }
 
   materialesPorProductoF(control: string) { return this.materialesPorProductoForm.get(control); }

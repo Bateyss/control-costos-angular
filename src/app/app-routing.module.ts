@@ -9,6 +9,10 @@ import { PuestoComponent } from './views/puesto/puesto.component';
 import { PlanillaComponent } from './views/planilla/planilla.component';
 import { RubroComponent } from './views/rubro/rubro.component';
 import { MantenimientoComponent } from './views/mantenimiento/mantenimiento.component';
+import { GastosAdministrativosComponent } from './views/gastos-administrativos/gastos-administrativos.component';
+import { MaterialesPorProductoComponent } from './views/materiales-por-producto/materiales-por-producto.component';
+import { PlanillaPorProductoComponent } from './views/planilla-por-producto/planilla-por-producto.component';
+import { SueldosGastosMensualesComponent } from './views/sueldos-gastos-mensuales/sueldos-gastos-mensuales.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
@@ -23,6 +27,10 @@ const routes: Routes = [
       { path: 'producto', component: ProductoComponent, },
       { path: 'puesto', component: PuestoComponent, },
       { path: 'rubro', component: RubroComponent, },
+      { path: 'gastosadministrativos', component: GastosAdministrativosComponent, },
+      { path: 'materialesporproducto', component: MaterialesPorProductoComponent, },
+      { path: 'planillaporproducto', component: PlanillaPorProductoComponent, },
+      { path: 'sueldogastosmensuales', component: SueldosGastosMensualesComponent, },
     ]
   },
   { path: '**', redirectTo: '/menu', pathMatch: 'full' },

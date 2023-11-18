@@ -3,41 +3,55 @@
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Formulario
-              </mat-panel-title>
+            </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-card>
             <mat-card-title>
-                <label *ngIf="!sueldoGastoMensualSeleccionado || sueldoGastoMensualSeleccionado.idSueldoGastoMensual == 0"
+                <label
+                    *ngIf="!sueldoGastoMensualSeleccionado || sueldoGastoMensualSeleccionado.idSueldoGastoMensual == 0"
                     class="h4">Agregar Departamento</label>
                 <label *ngIf="sueldoGastoMensualSeleccionado && sueldoGastoMensualSeleccionado.idSueldoGastoMensual > 0"
                     class="h4">Editar Departamento</label>
             </mat-card-title>
             <mat-card-content>
-                <form id="sueldosGastosMensualesForm" [formGroup]="sueldosGastosMensualesForm" (ngSubmit)="guardarSueldoGastosMensuales()">
+                <form id="sueldosGastosMensualesForm" [formGroup]="sueldosGastosMensualesForm"
+                    (ngSubmit)="guardarSueldoGastosMensuales()">
                     <mat-grid-list cols="1">
                         <mat-card-title>
                             <mat-form-field>
                                 <mat-label>Descripcion</mat-label>
                                 <input matInput required formControlName="descripcion"
                                     [ngClass]="{ 'is-invalid': sueldosGastosMensualesF('descripcion')?.errors }" />
-                                <mat-error *ngIf="sueldosGastosMensualesF('descripcion')?.errors">Ingrese Descripcion</mat-error>
+                                <mat-error *ngIf="sueldosGastosMensualesF('descripcion')?.errors">Ingrese
+                                    Descripcion</mat-error>
                             </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
                             <mat-form-field>
                                 <mat-label>Inversion Mensual</mat-label>
                                 <input matInput required formControlName="inversionMensual"
                                     [ngClass]="{ 'is-invalid': sueldosGastosMensualesF('inversionMensual')?.errors }" />
-                                <mat-error *ngIf="sueldosGastosMensualesF('inversionMensual')?.errors">Ingrese Inversion Mensual</mat-error>
-                            </mat-form-field>
-                            <mat-form-field>
-                                <mat-label>Activo</mat-label>
-                                <input matInput type="checkbox" required formControlName="activo"
-                                    [ngClass]="{ 'is-invalid': sueldosGastosMensualesF('activo')?.errors }" />
-                                <mat-error *ngIf="sueldosGastosMensualesF('activo')?.errors">es activo?</mat-error>
+                                <mat-error *ngIf="sueldosGastosMensualesF('inversionMensual')?.errors">Ingrese Inversion
+                                    Mensual</mat-error>
                             </mat-form-field>
                         </mat-card-title>
                         <mat-card-title>
-                            <button mat-stroked-button color="primary" type="submit" *ngIf="!sueldoGastoMensualSeleccionado || sueldoGastoMensualSeleccionado.idSueldoGastoMensual == 0">Agregar</button>
-                            <button mat-stroked-button color="primary" type="submit" *ngIf="sueldoGastoMensualSeleccionado && sueldoGastoMensualSeleccionado.idSueldoGastoMensual > 0">Editar</button>
+                            <mat-form-field>
+                                <mat-label>Es Importado</mat-label>
+                                <mat-select required formControlName="activo"
+                                    [ngClass]="{ 'is-invalid': sueldosGastosMensualesF('activo')?.errors }">
+                                    <mat-option [value]="true">SI</mat-option>
+                                    <mat-option [value]="false">NO</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="sueldosGastosMensualesF('activo')?.errors">Selecciona una
+                                    opcion</mat-error>
+                            </mat-form-field>
+                        </mat-card-title>
+                        <mat-card-title>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="!sueldoGastoMensualSeleccionado || sueldoGastoMensualSeleccionado.idSueldoGastoMensual == 0">Agregar</button>
+                            <button mat-stroked-button color="primary" type="submit"
+                                *ngIf="sueldoGastoMensualSeleccionado && sueldoGastoMensualSeleccionado.idSueldoGastoMensual > 0">Editar</button>
                         </mat-card-title>
                     </mat-grid-list>
                 </form>
@@ -48,24 +62,25 @@
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Tabla Departamentos
-              </mat-panel-title>
+            </mat-panel-title>
         </mat-expansion-panel-header>
-        <table mat-table [dataSource]="sueldoGastoMensualList" class="mat-elevation-z8" >
+        <table mat-table [dataSource]="sueldoGastoMensualList" class="mat-elevation-z8">
             <ng-container matColumnDef="descripcion">
                 <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Descripcion</th>
                 <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.descripcion}} </td>
             </ng-container>
-            <ng-container matColumnDef="inversionMensual" >
+            <ng-container matColumnDef="inversionMensual">
                 <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Inversion Mensual</th>
                 <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.inversionMensual}} </td>
             </ng-container>
-            <ng-container matColumnDef="activo" >
+            <ng-container matColumnDef="activo">
                 <th mat-header-cell *matHeaderCellDef [style.textAlign]="'center'">Activo?</th>
                 <td mat-cell *matCellDef="let element" [style.textAlign]="'center'"> {{element.activo}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="['descripcion', 'inversionMensual', 'activo']"></tr>
-            <tr mat-row *matRowDef="let row; columns: ['descripcion', 'inversionMensual', 'activo'];" (click)="seleccionarSueldoGastosMensuales(row)"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['descripcion', 'inversionMensual', 'activo'];"
+                (click)="seleccionarSueldoGastosMensuales(row)"></tr>
         </table>
     </mat-expansion-panel>
 </mat-accordion>

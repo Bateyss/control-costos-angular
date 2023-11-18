@@ -35,6 +35,10 @@ export class MenuComponent {
     this.menusList.push({id: 6,ruta: '/menu/producto',nombre: 'Productos'});
     this.menusList.push({id: 7,ruta: '/menu/puesto',nombre: 'Puestos'});
     this.menusList.push({id: 8,ruta: '/menu/rubro',nombre: 'Rubros'});
+    this.menusList.push({id: 8,ruta: '/menu/gastosadministrativos',nombre: 'Gastos Administrativos'});
+    this.menusList.push({id: 8,ruta: '/menu/materialesporproducto',nombre: 'Materiales Por Producto'});
+    this.menusList.push({id: 8,ruta: '/menu/planillaporproducto',nombre: 'Planillas por Producto'});
+    this.menusList.push({id: 8,ruta: '/menu/sueldogastosmensuales',nombre: 'Sueldos y Gastos Administrativos'});
   }
 
   redirigirMenu(dir: string) {
