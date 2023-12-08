@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Departamento } from 'src/app/models/departamento';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { DepartamentoService } from 'src/app/service/departamento.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { Departamento } from '../../models/departamento';
+import { DepartamentoService } from '../../service/departamento.service';
+import { Utils } from '../../utils/utilidades';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from '../../utils/material.module';
 
 @Component({
   selector: 'app-departamento',
   templateUrl: './departamento.component.html',
-  styleUrls: ['./departamento.component.css']
+  styleUrls: ['./departamento.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class DepartamentoComponent {
 
@@ -27,7 +31,7 @@ export class DepartamentoComponent {
   public departamentoList: Array<Departamento> = [];
 
   constructor(
-    public departamentoService: DepartamentoService,
+    private departamentoService: DepartamentoService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private _router: Router,

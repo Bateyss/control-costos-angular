@@ -3,16 +3,19 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Planilla } from 'src/app/models/planilla';
-import { Puesto } from 'src/app/models/puesto';
-import { PlanillaService } from 'src/app/service/planilla.service';
-import { PuestoService } from 'src/app/service/puesto.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { Planilla } from '../../models/planilla';
+import { Puesto } from '../../models/puesto';
+import { PlanillaService } from '../../service/planilla.service';
+import { PuestoService } from '../../service/puesto.service';
+import { MaterialModule } from '../../utils/material.module';
+import { Utils } from '../../utils/utilidades';
 
 @Component({
   selector: 'app-planilla',
   templateUrl: './planilla.component.html',
-  styleUrls: ['./planilla.component.css']
+  styleUrls: ['./planilla.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class PlanillaComponent {
   //forms

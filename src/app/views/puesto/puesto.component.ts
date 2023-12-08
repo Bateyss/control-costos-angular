@@ -3,18 +3,22 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Departamento } from 'src/app/models/departamento';
-import { Puesto } from 'src/app/models/puesto';
-import { Rubro } from 'src/app/models/rubro';
-import { DepartamentoService } from 'src/app/service/departamento.service';
-import { PuestoService } from 'src/app/service/puesto.service';
-import { RubroService } from 'src/app/service/rubro.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { Departamento } from '../../models/departamento';
+import { Puesto } from '../../models/puesto';
+import { Rubro } from '../../models/rubro';
+import { DepartamentoService } from '../../service/departamento.service';
+import { PuestoService } from '../../service/puesto.service';
+import { RubroService } from '../../service/rubro.service';
+import { Utils } from '../../utils/utilidades';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from '../../utils/material.module';
 
 @Component({
   selector: 'app-puesto',
   templateUrl: './puesto.component.html',
-  styleUrls: ['./puesto.component.css']
+  styleUrls: ['./puesto.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class PuestoComponent {
   //forms

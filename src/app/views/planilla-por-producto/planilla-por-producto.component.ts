@@ -3,18 +3,22 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Planilla } from 'src/app/models/planilla';
-import { PlanillaPorProducto } from 'src/app/models/planilla-por-producto';
-import { Producto } from 'src/app/models/producto';
-import { PlanillaPorProductoService } from 'src/app/service/planilla-por-producto.service';
-import { PlanillaService } from 'src/app/service/planilla.service';
-import { ProductoService } from 'src/app/service/producto.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { Planilla } from '../../models/planilla';
+import { PlanillaPorProducto } from '../../models/planilla-por-producto';
+import { Producto } from '../../models/producto';
+import { PlanillaPorProductoService } from '../../service/planilla-por-producto.service';
+import { PlanillaService } from '../../service/planilla.service';
+import { ProductoService } from '../../service/producto.service';
+import { Utils } from '../../utils/utilidades';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from '../../utils/material.module';
 
 @Component({
   selector: 'app-planilla-por-producto',
   templateUrl: './planilla-por-producto.component.html',
-  styleUrls: ['./planilla-por-producto.component.css']
+  styleUrls: ['./planilla-por-producto.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class PlanillaPorProductoComponent {
   //forms

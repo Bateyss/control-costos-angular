@@ -3,14 +3,17 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { SueldoGastosMensuales } from 'src/app/models/sueldo-gastos-mensuales';
-import { SueldosGastosMensualesService } from 'src/app/service/sueldos-gastos-mensuales.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { SueldoGastosMensuales } from '../../models/sueldo-gastos-mensuales';
+import { SueldosGastosMensualesService } from '../../service/sueldos-gastos-mensuales.service';
+import { Utils } from '../../utils/utilidades';
+import { MaterialModule } from '../../utils/material.module';
 
 @Component({
   selector: 'app-sueldos-gastos-mensuales',
   templateUrl: './sueldos-gastos-mensuales.component.html',
-  styleUrls: ['./sueldos-gastos-mensuales.component.css']
+  styleUrls: ['./sueldos-gastos-mensuales.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class SueldosGastosMensualesComponent {
   //forms

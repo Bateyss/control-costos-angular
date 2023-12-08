@@ -3,14 +3,18 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { GastosAdministrativos } from 'src/app/models/gastos-administrativos';
-import { GastosAdministrativosService } from 'src/app/service/gastos-administrativos.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { GastosAdministrativos } from '../../models/gastos-administrativos';
+import { GastosAdministrativosService } from '../../service/gastos-administrativos.service';
+import { Utils } from '../../utils/utilidades';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from '../../utils/material.module';
 
 @Component({
   selector: 'app-gastos-administrativos',
   templateUrl: './gastos-administrativos.component.html',
-  styleUrls: ['./gastos-administrativos.component.css']
+  styleUrls: ['./gastos-administrativos.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class GastosAdministrativosComponent {
   //forms

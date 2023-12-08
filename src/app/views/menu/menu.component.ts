@@ -1,11 +1,14 @@
 import { Component, Inject } from '@angular/core';
-import { Menu } from 'src/app/models/menu';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Menu } from '../../models/menu';
+import { MaterialModule } from '../../utils/material.module';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class MenuComponent {
   public menusList: Array<Menu> = [];

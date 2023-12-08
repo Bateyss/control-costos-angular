@@ -3,14 +3,18 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Rubro } from 'src/app/models/rubro';
-import { RubroService } from 'src/app/service/rubro.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { Rubro } from '../../models/rubro';
+import { RubroService } from '../../service/rubro.service';
+import { Utils } from '../../utils/utilidades';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from '../../utils/material.module';
 
 @Component({
   selector: 'app-rubro',
   templateUrl: './rubro.component.html',
-  styleUrls: ['./rubro.component.css']
+  styleUrls: ['./rubro.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class RubroComponent {
   //forms

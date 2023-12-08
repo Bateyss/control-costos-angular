@@ -3,14 +3,18 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { MateriaPrima } from 'src/app/models/materia-prima';
-import { MateriaPrimaService } from 'src/app/service/materia-prima.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { MateriaPrima } from '../../models/materia-prima';
+import { MateriaPrimaService } from '../../service/materia-prima.service';
+import { Utils } from '../../utils/utilidades';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from '../../utils/material.module';
 
 @Component({
   selector: 'app-materia-prima',
   templateUrl: './materia-prima.component.html',
-  styleUrls: ['./materia-prima.component.css']
+  styleUrls: ['./materia-prima.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class MateriaPrimaComponent {
 

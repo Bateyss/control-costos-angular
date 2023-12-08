@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { InventarioMateriaPrima } from 'src/app/models/inventario-materia-prima';
-import { InventarioMateriaPrimaService } from 'src/app/service/inventario-materia-prima.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { MateriaPrima } from 'src/app/models/materia-prima';
-import { MateriaPrimaService } from 'src/app/service/materia-prima.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { InventarioMateriaPrima } from '../../models/inventario-materia-prima';
+import { MateriaPrima } from '../../models/materia-prima';
+import { InventarioMateriaPrimaService } from '../../service/inventario-materia-prima.service';
+import { MateriaPrimaService } from '../../service/materia-prima.service';
+import { Utils } from '../../utils/utilidades';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from '../../utils/material.module';
+
 
 @Component({
   selector: 'app-inventario-materia-prima',
   templateUrl: './inventario-materia-prima.component.html',
-  styleUrls: ['./inventario-materia-prima.component.css']
+  styleUrls: ['./inventario-materia-prima.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class InventarioMateriaPrimaComponent {
 

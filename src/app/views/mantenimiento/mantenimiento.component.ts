@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationExtras, Router, RouterOutlet } from '@angular/router';
+import { MaterialModule } from '../../utils/material.module';
 import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-mantenimiento',
   templateUrl: './mantenimiento.component.html',
-  styleUrls: ['./mantenimiento.component.css']
+  styleUrls: ['./mantenimiento.component.css'],
+  standalone: true,
+  imports: [MaterialModule,RouterOutlet]
 })
 export class MantenimientoComponent {
   constructor(private dialog: MatDialog,

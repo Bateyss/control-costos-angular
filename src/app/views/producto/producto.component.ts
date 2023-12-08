@@ -3,14 +3,18 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Producto } from 'src/app/models/producto';
-import { ProductoService } from 'src/app/service/producto.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { Producto } from '../../models/producto';
+import { ProductoService } from '../../service/producto.service';
+import { Utils } from '../../utils/utilidades';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from '../../utils/material.module';
 
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
-  styleUrls: ['./producto.component.css']
+  styleUrls: ['./producto.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class ProductoComponent {
   //forms

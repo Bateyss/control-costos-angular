@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { InventarioProductoVentaService } from 'src/app/service/inventario-producto-venta.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Producto } from 'src/app/models/producto';
-import { ProductoService } from 'src/app/service/producto.service';
-import { Utils } from 'src/app/utils/utilidades';
-import { InventarioProductoVenta } from 'src/app/models/inventario-producto-venta';
+import { InventarioProductoVenta } from '../../models/inventario-producto-venta';
+import { Producto } from '../../models/producto';
+import { InventarioProductoVentaService } from '../../service/inventario-producto-venta.service';
+import { ProductoService } from '../../service/producto.service';
+import { Utils } from '../../utils/utilidades';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from '../../utils/material.module';
+
 
 @Component({
   selector: 'app-inventario-producto-venta',
   templateUrl: './inventario-producto-venta.component.html',
-  styleUrls: ['./inventario-producto-venta.component.css']
+  styleUrls: ['./inventario-producto-venta.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class InventarioProductoVentaComponent {
 

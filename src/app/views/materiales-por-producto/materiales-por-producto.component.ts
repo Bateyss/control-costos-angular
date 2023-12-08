@@ -3,18 +3,22 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { MateriaPrima } from 'src/app/models/materia-prima';
-import { MaterialesPorProducto } from 'src/app/models/materiales-por-producto';
-import { Producto } from 'src/app/models/producto';
-import { MateriaPrimaService } from 'src/app/service/materia-prima.service';
-import { MaterialesPorProductoService } from 'src/app/service/materiales-por-producto.service';
-import { ProductoService } from 'src/app/service/producto.service';
-import { Utils } from 'src/app/utils/utilidades';
+import { MateriaPrima } from '../../models/materia-prima';
+import { MaterialesPorProducto } from '../../models/materiales-por-producto';
+import { Producto } from '../../models/producto';
+import { MateriaPrimaService } from '../../service/materia-prima.service';
+import { MaterialesPorProductoService } from '../../service/materiales-por-producto.service';
+import { ProductoService } from '../../service/producto.service';
+import { Utils } from '../../utils/utilidades';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from '../../utils/material.module';
 
 @Component({
   selector: 'app-materiales-por-producto',
   templateUrl: './materiales-por-producto.component.html',
-  styleUrls: ['./materiales-por-producto.component.css']
+  styleUrls: ['./materiales-por-producto.component.css'],
+  standalone: true,
+  imports: [MaterialModule]
 })
 export class MaterialesPorProductoComponent {
   //forms
